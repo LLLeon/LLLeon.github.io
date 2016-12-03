@@ -236,7 +236,7 @@
               
                 
                 <a class="post-title-link" href="/2016/12/03/Pointers and Allocation/" itemprop="url">
-                  未命名
+                  Pointers and Allocation
                 </a>
               
             
@@ -279,7 +279,7 @@
       
         
           
-            <h2 id="指针与分配"><a href="#指针与分配" class="headerlink" title="指针与分配"></a>指针与分配</h2><p>原文链接：<a href="https://golang.org/doc/faq#Pointers" target="_blank" rel="external">https://golang.org/doc/faq#Pointers</a></p>
+            <p>原文链接：<a href="https://golang.org/doc/faq#Pointers" target="_blank" rel="external">https://golang.org/doc/faq#Pointers</a></p>
 <h3 id="何时函数的参数通过值传递？"><a href="#何时函数的参数通过值传递？" class="headerlink" title="何时函数的参数通过值传递？"></a>何时函数的参数通过值传递？</h3><ol>
 <li>和 C 语言家族中的所有语言一样，Go 中的所有东西都通过值传递。也就是说，一个函数总是得到被传递的东西的 copy，就像一条赋值语句将该值赋给参数。例如，给函数传递一个 int 值，即创建了一个该 int 值的 copy；传递一个指针值就创建了一个该指针的 copy，而不是它指向的数据的 copy。</li>
 <li>map 和 slice 表现的像指针：它们是包含指向底层 map 或 slice 数据的指针的描述符。复制一个 map 或 slice 值并不复制它指向的数据。复制一个 interface 值将创建一个存储在该 interface 值中的东西的 copy。如果 interface 值持有指针，复制该 interface 值将创建一个该指针的 copy，而不是它指向的数据的 copy。</li>
