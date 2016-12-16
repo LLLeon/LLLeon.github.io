@@ -1,1 +1,899 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description" content="是谁来自山川湖海，却囿于昼夜、厨房与爱。"><meta name="keywords" content="Python, Golang, MySQL"><title>LLLeon 的部落格</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favicon.ico"></head><body><div class="page-header"><div class="background"><img src="/default_images/page_background.jpg"></div><div class="author"><div class="head"><img src="/default_images/author_head.jpg"></div><h3 class="name">LLLeon</h3><p class="signature">是谁来自山川湖海，却囿于昼夜、厨房与爱。</p></div></div><ul class="post-list"><li> <p class="date">December 16, 2016</p><h4 class="title"><a href="/2016/12/16/MySQL Transaction/">MySQL Transaction</a></h4><div class="excerpt"></div><ul class="meta"><li><i class="icon icon-author"></i>LLLeon</li><li><i class="icon icon-clock"></i>19 Minutes</li><li><i class="icon icon-category"></i></li></ul></li><li> <p class="date">December 3, 2016</p><h4 class="title"><a href="/2016/12/03/Pointers and Allocation/">Pointers and Allocation</a></h4><div class="excerpt"></div><ul class="meta"><li><i class="icon icon-author"></i>LLLeon</li><li><i class="icon icon-clock"></i>5 Minutes</li><li><i class="icon icon-category"></i></li></ul></li><li> <p class="date">July 25, 2016</p><h4 class="title"><a href="/2016/07/25/hello-world/">Hello World</a></h4><div class="excerpt"></div><ul class="meta"><li><i class="icon icon-author"></i>LLLeon</li><li><i class="icon icon-clock"></i>2 Minutes</li><li><i class="icon icon-category"></i></li></ul></li></ul><ul class="pagination"><li class="current"><a>1</a></li></ul><div class="page-footer"><div class="top"><ul class="social"><li><a href="https://github.com/LLLeon" title="GitHub" target="_blank"><i class="icon icon-github"></i></a></li><li><a href="http://weibo.com/" title="Weibo" target="_blank"><i class="icon icon-weibo"></i></a></li><li><a href="https://www.facebook.com/" title="facebook" target="_blank"><i class="icon icon-facebook"></i></a></li></ul></div><div class="bottom"><p class="copyright">© 2016 LLLeon 的部落格<br><small>POWER BY <a href="https://hexo.io" target="_blank">HEXO</a></small><small>, THEME BY <a href="https://github.com/BoizZ/hexo-theme-laughing" target="_blank">LAUGHING</a></small></p></div></div></body></html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="是谁来自山川湖海，却囿于昼夜、厨房与爱。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LLLeon 的部落格">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="LLLeon 的部落格">
+<meta property="og:description" content="是谁来自山川湖海，却囿于昼夜、厨房与爱。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LLLeon 的部落格">
+<meta name="twitter:description" content="是谁来自山川湖海，却囿于昼夜、厨房与爱。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'LLLeon'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+  <title> LLLeon 的部落格 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">LLLeon 的部落格</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/16/MySQL Transaction/" itemprop="url">
+                  MySQL Transaction
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-16T10:07:10+08:00" content="2016-12-16">
+              2016-12-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>英文原文：<a href="http://www.w3resource.com/mysql/mysql-transaction.php" target="_blank" rel="external">http://www.w3resource.com/mysql/mysql-transaction.php</a></p>
+<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><ol>
+<li>一个事务是一个包含一条或多条 SQL 语句的作业的逻辑单位。</li>
+<li>事务是可以提交或回滚的作业的原子单位。</li>
+<li>当一个事务对数据库进行多个更改时，有两种结果，若事务提交则所有更改成功，若事务回滚则所有更改撤销。</li>
+<li>事务开始于第一条可执行的 SQL 语句。</li>
+<li>当提交或回滚事务时，使用 COMMIT 或 ROLLBACK 语句显式地或在发出 DDL 语句时隐式地提交事务，事务结束。<ul>
+<li><strong>DDL(Data Definition Language)</strong>：用于管理表和索引结构，CREATE、ALTER、RENAME、DROP 和 TRUNCATE 语句仅列出一些数据定义元素。</li>
+</ul>
+</li>
+</ol>
+<h2 id="事务的概念"><a href="#事务的概念" class="headerlink" title="事务的概念"></a>事务的概念</h2><ol>
+<li>为了便于理解，用一个银行数据库的例子来说明。假设存款人将资金从他的储蓄卡(SB a/c)转移到信用卡(CA a/c)，该语句将被分为四个部分：<ul>
+<li>储蓄卡操作</li>
+<li>信用卡操作</li>
+<li>记录到事务日志</li>
+<li>结束事务</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>操作储蓄卡的 SQL 语句如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UPDATE sb_accounts</div><div class="line">SET balance = balance - 1000</div><div class="line">WHERE account_no = 932656 ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>操作信用卡的 SQL 语句如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UPDATE ca_accounts</div><div class="line">SET balance = balance + 1000</div><div class="line">WHERE account_no = 933456 ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>记录到事务日志的 SQL 语句如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">INSERT INTO journal VALUES </div><div class="line">(100896, &apos;Tansaction on Benjamin Hampshair a/c&apos;, &apos;26-AUG-08&apos; 932656, 933456, 1000);</div></pre></td></tr></table></figure>
+</li>
+<li><p>结束事务的 SQL 语句如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">COMMIT WORK;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="MySQL-和-ACID-模型"><a href="#MySQL-和-ACID-模型" class="headerlink" title="MySQL 和 ACID 模型"></a>MySQL 和 ACID 模型</h2><ol>
+<li><p>ACID (Atomicity, Consistency, Isolation, Durability) 是保证数据库事务可靠处理的一组属性。</p>
+</li>
+<li><p>在 MySQL 中，InnoDB 存储引擎支持 ACID 兼容的特性。</p>
+</li>
+<li><p>以下各节讨论 MySQL 的特性，特别是 InnoDB 存储引擎与 ACID 模型类别的交互：</p>
+<ul>
+<li><p><strong>Atomicity</strong>：主要涉及InnoDB事务，相关的 MySQL 功能包括：</p>
+<p>⋅⋅1. 自动提交设置(Autocommit setting)；</p>
+<p>⋅⋅2. COMMIT 语句；</p>
+<p>⋅⋅3. ROLLBACK 语句；</p>
+<p>⋅⋅4. 从 INFORMATION_SCHEMA 表操作数据。</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p><strong>Consistency</strong>：主要涉及内部 InnoDB 处理以保护数据免遭崩溃，相关的 MySQL 功能包括：</p>
+<p>⋅⋅1. InnoDB 双重写缓冲区(InnoDB doublewrite buffer)；</p>
+<p>⋅⋅<em>. <em>*doublewrite buffer</em></em> 是一个位于系统表空间中的存储区域，InnoDB 在将页面写入其在数据文件中的正确位置之前写入从 InnoDB 缓冲池刷新的页面（原文：The doublewrite buffer is a storage area located in the system tablespace where InnoDB writes pages that are flushed from the InnoDB buffer pool, before the pages are written to their proper positions in the data file.）。</p>
+<p>⋅⋅2. InnoDB 崩溃恢复。</p>
+</li>
+<li><p><strong>Isolation</strong>：主要涉及 InnoDB 事务，主要是适用于每个事务的隔离级别，相关的 MySQL 功能包括：</p>
+<p>⋅⋅1. 自动提交设置(Autocommit setting)；</p>
+<p>⋅⋅2. SET ISOLATION LEVEL 语句；</p>
+<p>⋅⋅3. InnoDB 锁的底层细节。在性能调优期间，可以通过 INFORMATION_SCHEMA 表查看详细信息。</p>
+</li>
+<li><p><strong>Durability</strong>：涉及 MySQL 中与特定硬件配置交互的软件功能，相关的 MySQL 功能包括：</p>
+<p>⋅⋅1. InnoDB 双重写缓冲区通过 innodb_doublewrite 配置选项的开启与关闭；</p>
+<p>⋅⋅2. 配置选项 innodb_flush_log_at_trx_commit；</p>
+<p>⋅⋅3. 配置选项 sync_binlog；</p>
+<p>⋅⋅4. 配置选项 innodb_file_per_table；</p>
+<p>⋅⋅5. 在存储设备（如磁盘驱动器，SSD 或 RAID 阵列）中写入缓冲区；</p>
+<p>⋅⋅6. 存储设备中电池支持的缓存（Battery-backed cache in a storage device）；？？？</p>
+<p>⋅⋅7. 用于运行 MySQL 的操作系统，特别是其对 fsync() 系统调用的支持；</p>
+<p>⋅⋅8. UPS 保护所有运行 MySQL 服务和存储 MySQL 数据的服务器和存储设备的电源；</p>
+<p>⋅⋅9. 备份策略，如备份频率、类型以及备份的保留期；</p>
+<p>⋅⋅10. 对于分布式或托管的数据应用程序，数据中心的特殊特性：MySQL 服务器的硬件位于何处、数据中心之间的网络连接。</p>
+</li>
+</ul>
+<h2 id="MySQL-事务"><a href="#MySQL-事务" class="headerlink" title="MySQL 事务"></a>MySQL 事务</h2><ol>
+<li><p>MySQL(5.6版本) 通过诸如 SET autocommit、START TRANSACTION、COMMIT 和 ROLLBACK 这样的语句支持本地事务（在一个给定的客户端会话中）。以下是START TRANSACTION、COMMIT 和 ROLLBACK 的语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">  START TRANSACTION</div><div class="line">   transaction_characteristic [, transaction_characteristic] ...] </div><div class="line"></div><div class="line">transaction_characteristic:     </div><div class="line">    WITH CONSISTENT SNAPSHOT    </div><div class="line">    | READ WRITE    </div><div class="line">    | READ ONLY    </div><div class="line"></div><div class="line">BEGIN [WORK]  </div><div class="line">COMMIT [WORK] [AND [NO] CHAIN] [[NO] RELEASE]  </div><div class="line">ROLLBACK [WORK] [AND [NO] CHAIN] [[NO] RELEASE]  </div><div class="line">SET autocommit = &#123;0 | 1&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>以下这些语句提供对事务使用的控制：</p>
+<ul>
+<li>START TRANSACTION 或 BEGIN 语句开始一个新事务；</li>
+<li>COMMIT 提交当前事务，使其更改永久生效；</li>
+<li>ROLLBACK 回滚当前事务，取消其更改；</li>
+<li>SETautocommit 语句为当前会话禁止或启用默认的 autocommit 模式。</li>
+</ul>
+</li>
+<li>默认情况，MySQL 运行时 autocommit 模式是激活的。这意味着只要执行一条语句就会更新一个表，MySQL 在磁盘上存储该更新使其永久生效。该更改不能回滚。</li>
+<li><p>现在，MySQL 在 autocommit 模式激活的情况下运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from student_mast;</div><div class="line">+------------+------------------+----------+</div><div class="line">| STUDENT_ID | NAME             | ST_CLASS |</div><div class="line">+------------+------------------+----------+</div><div class="line">|          2 | Neena  Kochhar   |        9 |</div><div class="line">|          3 | Lex  De Haan     |        9 |</div><div class="line">|          4 | Alexander Hunold |       11 |</div><div class="line">+------------+------------------+----------+</div><div class="line">3 rows in set (0.09 sec)</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行一条更新命令：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  mysql&gt; UPDATE STUDENT_MAST SET ST_CLASS=8 WHERE STUDENT_ID=2;</div><div class="line">  Query OK, 1 row affected (0.08 sec)</div><div class="line">  Rows matched: 1  Changed: 1  Warnings: 0</div><div class="line"></div><div class="line">mysql&gt; select * from student_mast;</div><div class="line">+------------+------------------+----------+</div><div class="line">| STUDENT_ID | NAME             | ST_CLASS |</div><div class="line">+------------+------------------+----------+</div><div class="line">|          2 | Neena  Kochhar   |        8 |</div><div class="line">|          3 | Lex  De Haan     |        9 |</div><div class="line">|          4 | Alexander Hunold |       11 |</div><div class="line">+------------+------------------+----------+</div><div class="line">3 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<ol>
+<li>现在执行 ROLLBACK 命令来返回前一阶段：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">  mysql&gt; ROLLBACK;</div><div class="line">  Query OK, 0 rows affected (0.03 sec)</div><div class="line"></div><div class="line">mysql&gt; select * from student_mast;</div><div class="line">+------------+------------------+----------+</div><div class="line">| STUDENT_ID | NAME             | ST_CLASS |</div><div class="line">+------------+------------------+----------+</div><div class="line">|          2 | Neena  Kochhar   |        8 |</div><div class="line">|          3 | Lex  De Haan     |        9 |</div><div class="line">|          4 | Alexander Hunold |       11 |</div><div class="line">+------------+------------------+----------+</div><div class="line">3 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<ol>
+<li>在 autocommit 模式激活的情况下回滚没有生效。</li>
+<li>禁用 autocommit 模式，使用 START TRANSACTION 语句：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">  mysql&gt; START TRANSACTION;</div><div class="line">  Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; UPDATE STUDENT_MAST SET ST_CLASS=10 WHERE STUDENT_ID=2;</div><div class="line">Query OK, 1 row affected (0.00 sec)</div><div class="line">Rows matched: 1  Changed: 1  Warnings: 0</div><div class="line"></div><div class="line">mysql&gt; select * from student_mast;</div><div class="line">+------------+------------------+----------+</div><div class="line">| STUDENT_ID | NAME             | ST_CLASS |</div><div class="line">+------------+------------------+----------+</div><div class="line">|          2 | Neena  Kochhar   |       10 |</div><div class="line">|          3 | Lex  De Haan     |        9 |</div><div class="line">|          4 | Alexander Hunold |       11 |</div><div class="line">+------------+------------------+----------+</div><div class="line">3 rows in set (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; ROLLBACK;</div><div class="line">Query OK, 0 rows affected (0.07 sec)</div><div class="line"></div><div class="line">mysql&gt; select * from student_mast;</div><div class="line">+------------+------------------+----------+</div><div class="line">| STUDENT_ID | NAME             | ST_CLASS |</div><div class="line">+------------+------------------+----------+</div><div class="line">|          2 | Neena  Kochhar   |        8 |</div><div class="line">|          3 | Lex  De Haan     |        9 |</div><div class="line">|          4 | Alexander Hunold |       11 |</div><div class="line">+------------+------------------+----------+</div><div class="line">3 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<h2 id="MySQL-语句不能回滚并且语句引起一个隐式提交"><a href="#MySQL-语句不能回滚并且语句引起一个隐式提交" class="headerlink" title="MySQL 语句不能回滚并且语句引起一个隐式提交"></a>MySQL 语句不能回滚并且语句引起一个隐式提交</h2><ol>
+<li>在 MySQL 中，一些语句不能回滚。例如 CREATE 或 DROP 数据库，CREATE、ALTER 或 DROP 表，或存储程序这样的 DDL 语句。应该在不使用这些语句的情况下设计一个事务。</li>
+<li><p>以下列出的语句（以及它们的同义词）隐式的结束当前会话中活动的任何事务，就像在执行这些语句之前已经执行 COMMIT 一样：</p>
+<ul>
+<li><p>定义或修改数据库对象的 DDL 语句：ALTER DATABASE, UPGRADE DATA DIRECTORY NAME, ALTER EVENT, ALTER PROCEDURE, ALTER SERVER, ALTER TABLE, ALTER VIEW, CREATE DATABAS, CREATE EVENT, CREATE INDEX, CREATE PROCEDURE, CREATE SERVER, CREATE TABLE, CREATE TRIGGER, CREATE VIEW, DROP DATABASE, DROP EVENT, DROP INDEX, DROP PROCEDURE, DROP SERVER, DROP TABLE, DROP TRIGGER, DROP VIEW, RENAME TABLE, TRUNCATE TABLE。</p>
+</li>
+<li><p>当与 stored function 一起使用时，ALTER FUNCTION, CREATE FUNCTION 和 DROP FUNCTION 也引起隐式提交，但与 UDFs（User-Defined Function） 一起使用时不是这样（ALTER FUNCTION 只能和 stored function 一起使用）。</p>
+<p>⋅⋅⋅1. stored functions 是一种特殊类型的 stored program，它返回单个值。使用 stored functions 来封装可在 SQL 语句或 stored programs 中重复使用的常见公式或业务规则（原文：A stored function is a special kind stored program that returns a single value. You use stored functions to encapsulate common formulas or business rules that are reusable among SQL statements or stored programs.）。</p>
+</li>
+<li><p>如果使用了 TEMPORARY 关键字，ALTER TABLE, CREATE TABLE 和 DROP TABLE 不提交事务。</p>
+</li>
+<li><p>隐式的使用或修改 MySQL 数据库中表的语句：CREATE USER, DROP USER, GRANT, RENAME USER, REVOKE, SET PASSWORD。</p>
+</li>
+<li><p>事务的控制和锁语句：BEGIN, LOCK TABLES, SET autocommit = 1 (如果值不是已经设为 1), START TRANSACTION, UNLOCK TABLES。</p>
+</li>
+<li><p>数据加载语句： LOAD DATA INFILE。LOAD DATA INFILE 仅在表使用 NDB 存储引擎时引起一个隐式的提交。</p>
+</li>
+<li><p>管理语句：ANALYZE TABLE, CACHE INDEX, CHECK TABLE, LOAD INDEX INTO CACHE, OPTIMIZE TABLE, REPAIR TABLE。</p>
+</li>
+<li><p>重复控制语句：START SLAVE, STOP SLAVE, RESET SLAVE, CHANGE MASTER TO。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="SAVEPOINT-ROLLBACK-TO-SAVEPOINT-和-RELEASE-SAVEPOINT"><a href="#SAVEPOINT-ROLLBACK-TO-SAVEPOINT-和-RELEASE-SAVEPOINT" class="headerlink" title="SAVEPOINT, ROLLBACK TO SAVEPOINT 和 RELEASE SAVEPOINT"></a>SAVEPOINT, ROLLBACK TO SAVEPOINT 和 RELEASE SAVEPOINT</h2><ol>
+<li>InnoDB 支持 SQL 语句 SAVEPOINT, ROLLBACK TO SAVEPOINT, RELEASE SAVEPOINT，还有用于 ROLLBACK 的可选关键字 WORK。</li>
+<li>SAVEPOINT 语句用标识符名称设置已经命名的事务 savepoint。如果当前事务有一个与其同名的 savepoint，则旧的 savepoint 将被删除，并设置一个新的。</li>
+<li><p>ROLLBACK TO SAVEPOINT 语句将事务回滚到指定的 savepoint 而不终止事务。当前事务对 savepoint 后的行所做的修改在回滚中撤销，但 InnoDB 不释放在 savepoint 后存储在内存中的行锁（？？？）（对于新插入的行，锁的信息由存储在该行中的事务 ID 携带，该锁不单独存储在内存中。）。语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SAVEPOINT identifier  </div><div class="line">ROLLBACK [WORK] TO [SAVEPOINT] identifier  </div><div class="line">RELEASE SAVEPOINT identifier</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果执行 COMMIT，或在没有指定一个 savepoint 时执行 ROLLBACK，则会删除当前事务的所有 savepoint。</p>
+</li>
+</ol>
+<h2 id="锁定和解锁表"><a href="#锁定和解锁表" class="headerlink" title="锁定和解锁表"></a>锁定和解锁表</h2><ol>
+<li>为了与其它会话协同运行来访问表或防止其它会话在会话需要独占访问它们的期间修改表，MySQL 激活客户端会话来显式的获取表锁。一个会话可以仅为自身获取或释放锁。一个会话不能为另一个会话获取锁或释放另一个会话持有的锁。（A session can acquire or release locks only for itself. One session cannot acquire locks for another session or release locks held by another session.）</li>
+<li>LOCK TABLES 为当前客户端会话显式的获取表锁。可以为基本表（base tables）或视图获取表锁。必须有 LOCK TABLES 权限，以及要锁定的每个对象的 SELECT 权限（原文：You must have the LOCK TABLES privilege, and the SELECT privilege for each object to be locked.）。</li>
+<li>UNLOCK TABLES 显式的释放当前会话持有的任何表锁。LOCK TABLES 在获取新锁之前隐式的释放当前会话持有的任何表锁（LOCK TABLES implicitly releases any table locks held by the current session before acquiring new locks.）。语法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  LOCK TABLES      </div><div class="line">  tbl_name [[AS] alias] lock_type      </div><div class="line">  [, tbl_name [[AS] alias] lock_type] ...    </div><div class="line"></div><div class="line">lock_type:      </div><div class="line">  READ [LOCAL]    </div><div class="line"> | [LOW_PRIORITY] WRITE    </div><div class="line"></div><div class="line">UNLOCK TABLES</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="SET-TRANSACTION-语法"><a href="#SET-TRANSACTION-语法" class="headerlink" title="SET TRANSACTION 语法"></a>SET TRANSACTION 语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">SET [GLOBAL | SESSION] TRANSACTION</div><div class="line">    transaction_characteristic [, transaction_characteristic] ...</div><div class="line"></div><div class="line">transaction_characteristic:      </div><div class="line">    ISOLATION LEVEL level    </div><div class="line">  | READ WRITE    </div><div class="line">  | READ ONLY    </div><div class="line"></div><div class="line">level:       </div><div class="line">  REPEATABLE READ     </div><div class="line">  | READ COMMITTED     </div><div class="line">  | READ UNCOMMITTED     </div><div class="line">  | SERIALIZABLE</div></pre></td></tr></table></figure>
+<ol>
+<li>使用 GLOBAL 关键字，该语句将全局应用于后续会话。现有会话不受影响。</li>
+<li>使用 SESSION 关键字，该语句将应用于在当前会话执行的所有后续事务。</li>
+<li>不使用任何 SESSION 或 GLOBAL 关键字，该语句应用于当前会话执行的下一个（未启动）事务。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/03/Pointers and Allocation/" itemprop="url">
+                  Pointers and Allocation
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-03T14:57:13+08:00" content="2016-12-03">
+              2016-12-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原文链接：<a href="https://golang.org/doc/faq#Pointers" target="_blank" rel="external">https://golang.org/doc/faq#Pointers</a></p>
+<h3 id="何时函数的参数通过值传递？"><a href="#何时函数的参数通过值传递？" class="headerlink" title="何时函数的参数通过值传递？"></a>何时函数的参数通过值传递？</h3><ol>
+<li>和 C 语言家族中的所有语言一样，Go 中的所有东西都通过值传递。也就是说，一个函数总是得到被传递的东西的 copy，就像一条赋值语句将该值赋给参数。例如，给函数传递一个 int 值，即创建了一个该 int 值的 copy；传递一个指针值就创建了一个该指针的 copy，而不是它指向的数据的 copy。</li>
+<li>map 和 slice 表现的像指针：它们是包含指向底层 map 或 slice 数据的指针的描述符。复制一个 map 或 slice 值并不复制它指向的数据。复制一个 interface 值将创建一个存储在该 interface 值中的东西的 copy。如果 interface 值持有指针，复制该 interface 值将创建一个该指针的 copy，而不是它指向的数据的 copy。</li>
+</ol>
+<h3 id="何时应该使用-interface-的指针？"><a href="#何时应该使用-interface-的指针？" class="headerlink" title="何时应该使用 interface 的指针？"></a>何时应该使用 interface 的指针？</h3><ol>
+<li>几乎从不。interface 值的指针非常罕见，棘手的情况包括为延迟的评价伪装一个 interface 值的类型。（原文：Pointers to interface values arise only in rare, tricky situations involving disguising an interface value’s type for delayed evaluation.）</li>
+<li>给期望接收一个 interface 的函数传递一个 interface 值的指针是常见的错误。编译器会抱怨这个错误但情况仍然可能令人困惑，因为有时候一个指针是必要的，以满足一个 interface。</li>
+<li>虽然一个指向一个具体类型的指针可以满足一个 interface，但有一个例外，一个 interface 的指针永远不能满足一个 interface。</li>
+<li>考虑下面的变量声明：</li>
+</ol>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> w io.Writer</div></pre></td></tr></table></figure>
+<ol>
+<li><ol>
+<li>打印函数 <code>fmt.Fprintf</code> 取满足 io.Writer 的值（实现规范 Write 方法的东西）作为其第一个参数。因此我们可以这样写：</li>
+</ol>
+<p><code>fmt.Fprintf(w, &quot;hello, world\n&quot;)</code> </p>
+<ol>
+<li>若传递 w 的地址，程序将不能编译。</li>
+</ol>
+<p><code>fmt.Fprintf(&amp;w, &quot;hello, world\n&quot;) // Compile-time error.</code> </p>
+<ol>
+<li>有一个例外是，任何值，即使是 interface 的指针，可以分配给一个空的 interface 类型变量（interface{}）。即使这样，如果值是一个 interface 的指针，几乎肯定是一个错误；结果可能会混淆。</li>
+</ol>
+</li>
+</ol>
+<h3 id="应该在值还是指针上定义方法？"><a href="#应该在值还是指针上定义方法？" class="headerlink" title="应该在值还是指针上定义方法？"></a>应该在值还是指针上定义方法？</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *MyStruct)</span> <span class="title">pointerMethod</span><span class="params">()</span></span> &#123; &#125; <span class="comment">// method on pointer</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s MyStruct)</span>  <span class="title">valueMethod</span><span class="params">()</span></span>   &#123; &#125; <span class="comment">// method on value</span></div></pre></td></tr></table></figure>
+<p>​    对于不习惯指针的程序员，以上两个例子之间的区别可能是难以理解的，但情况其实很简单。定义类型的方法时，确切地说，receiver（上例中的 s）就像方法的一个参数。无论将 receiver 定义为值还是指针，都是同一个问题，即函数的参数应该是值还是指针。这里有几点考虑。</p>
+<ol>
+<li>最重要的，方法是否需要修改 receiver？如果需要，receiver 必须是一个指针（Slices 和 maps 像引用一样执行，它们的情况有些微秒，但要在方法中修改 slice 的长度时，receiver 仍然必须是一个指针）。在以上例子中，如果 pointerMethod 更改 s 的字段，调用者会看到这些变化，但 valueMethod 是调用调用者的参数的一个 copy（这就是传值的定义），所以它所做的改变调用者是看不见的。</li>
+<li>第二点是关于效率的考虑，如果 receiver 非常大，比如说是一个大 struct，使用一个指针 receiver 的成本会更低。</li>
+<li>接下来是一致性。如果类型的某些方法必须有指针 receiver，其余的方法也应该有，因此无论如何使用类型，方法集都是一致的。</li>
+<li>对于类型，比如基础类型 slice 和 小 struct 来说，一个值 receiver 是成本很低的，所以除非方法在语义上需要一个指针，否则值 receiver 更加有效和清晰。</li>
+</ol>
+<h3 id="new-和-make-有何不同？"><a href="#new-和-make-有何不同？" class="headerlink" title="new 和 make 有何不同？"></a>new 和 make 有何不同？</h3><p>简单来讲，new 分配内存，make 初始化 slice、map 和 channel 类型。</p>
+<h3 id="在-64-位机器上-int-的大小是多少？"><a href="#在-64-位机器上-int-的大小是多少？" class="headerlink" title="在 64 位机器上 int 的大小是多少？"></a>在 64 位机器上 int 的大小是多少？</h3><ol>
+<li>int 和 uint 的大小是具体平台具体实现的，但在给定平台上彼此相同。</li>
+<li>为了可移植性，依赖于某个特定大小的值的代码应该使用显式大小的类型，比如 int64。</li>
+<li>在 Go 1.1 之前的版本中，64 位的 Go 编译器使用 32 位表示形式的 int。Go 1.1 版本使用 64 位表示。</li>
+<li>另一方面，浮点标量和复数总是依尺寸分：float32、complex64 等等，因为程序员在使用浮点数时要注意精度。浮点常数的默认大小是 float64。</li>
+</ol>
+<h3 id="如何判断一个变量是被分配到堆还是堆栈？"><a href="#如何判断一个变量是被分配到堆还是堆栈？" class="headerlink" title="如何判断一个变量是被分配到堆还是堆栈？"></a>如何判断一个变量是被分配到堆还是堆栈？</h3><ol>
+<li>从正确的角度来看，你不需要知道。只要有对它的引用，Go 中的每个变量就存在。实现选择的存储位置与语言的语义无关。</li>
+<li>存储位置确实对编写有效率的程序有影响。如果可能，Go 编译器将在函数的堆栈框架中为函数分配其局部变量。然而，如果编译器无法证明函数返回后变量没有被引用，那么编译器必须在垃圾回收堆上分配变量，以避免悬挂指针错误。（However, if the compiler cannot prove that the variable is not referenced after the function returns, then the compiler must allocate the variable on the garbage-collected heap to avoid dangling pointer errors. ）</li>
+<li>此外，如果一个本地变量非常大，将它存储在堆而不是堆栈中或许更有意义。</li>
+<li>在当前编译器中，如果一个变量取得了它的地址，那么该变量就是堆上分配的候选。然而，基本的转义分析识别某些情况下，这样的变量在函数返回之后将不会存活，并且可以驻留在堆栈上。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/25/hello-world/" itemprop="url">
+                  Hello World
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-25T11:04:16+08:00" content="2016-07-25">
+              2016-07-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="LLLeon" />
+          <p class="site-author-name" itemprop="name">LLLeon</p>
+          <p class="site-description motion-element" itemprop="description">是谁来自山川湖海，却囿于昼夜、厨房与爱。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LLLeon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
