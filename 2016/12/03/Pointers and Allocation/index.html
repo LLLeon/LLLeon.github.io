@@ -106,7 +106,7 @@
 <meta property="og:description" content="原文链接：https://golang.org/doc/faq#Pointers
 何时函数的参数通过值传递？
 和 C 语言家族中的所有语言一样，Go 中的所有东西都通过值传递。也就是说，一个函数总是得到被传递的东西的 copy，就像一条赋值语句将该值赋给参数。例如，给函数传递一个 int 值，即创建了一个该 int 值的 copy；传递一个指针值就创建了一个该指针的 copy，而不是它指向的数据的">
-<meta property="og:updated_time" content="2016-12-16T10:45:09.000Z">
+<meta property="og:updated_time" content="2016-12-17T12:51:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pointers and Allocation">
 <meta name="twitter:description" content="原文链接：https://golang.org/doc/faq#Pointers
@@ -217,6 +217,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
@@ -304,6 +314,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -396,7 +425,7 @@
       
         
   <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>想吃冰棍儿</div>
+    <div>想吃五分钱一根儿的冰棍儿</div>
     <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
       <span>赏</span>
     </button>
@@ -517,6 +546,13 @@
             </a>
           </div>
 
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
           
 
           
